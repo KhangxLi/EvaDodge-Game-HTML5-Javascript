@@ -4,15 +4,18 @@ var player = {radius: 15, x: canvas.width / 2, y: canvas.height / 2 + 40, color:
 var ball = {radius: 10, x: canvas.width / 2, y: 12, color: "#ff0000"}
 var dBall = [1, 1]
 var tracker = {radius: 5, x: canvas.width / 2, y: 12, color: "#ffff00"}
-var dTracker = [0, 0]
+var dTracker = [0, 0.5]
 var target = {x: player.x, y: player.y}
+var score = 0;
+var level = 0;
+var health = 10;
+var animation = true;
 var rightPressed = false;
 var leftPressed = false;
 var downPressed = false;
 var upPressed = false;
-var score = 0;
-var level = 0;
-var health = 10;
+var playPressed = false;
+var rPressed = false;
 
 function drawPlayer() {
     ctx.beginPath();
@@ -54,7 +57,6 @@ function newTracker() {
     ctx.fill();
     ctx.closePath();
 
-
     tracker.x += dTracker[0];
     tracker.y += dTracker[1];
 
@@ -66,10 +68,6 @@ function newTracker() {
             dTracker[0] = -c;
         }
     }
-    else {
-        dTracker[0] = 0;
-    }
-
     if(target.y != player.y) {
         if(tracker.y < player.y) {
             dTracker[1] = c;
@@ -77,9 +75,6 @@ function newTracker() {
         else if(tracker.y > player.y) {
             dTracker[1] = -c;
         }
-    }
-    else {
-        dTracker[1] = 0;
     }
 }
 
@@ -118,20 +113,29 @@ function drawHealth() {
 
 function instructions() {
     if(level == 0) {
-        ctx.globalAlpha = "0.15";
-        ctx.font = "45px Lucida Control";
-        ctx.fillStyle = "#000";
-        ctx.fillText("WASD | Arrow Keys", canvas.width / 2 - 186, canvas.height / 2 + 10);
         ctx.globalAlpha = "0.25"
         ctx.font = "30px Lucida Control";
         ctx.fillStyle = "#000";
         ctx.fillText("You Are Blue. Dodge Forever.", canvas.width / 2 - 180, canvas.height / 2 - 40);
+        ctx.globalAlpha = "0.15";
+        ctx.font = "45px Lucida Control";
+        ctx.fillStyle = "#000";
+        ctx.fillText("WASD | Arrow Keys", canvas.width / 2 - 186, canvas.height / 2 + 10);
+        ctx.globalAlpha = "0.40"
+        ctx.font = "20px Lucida Control";
+        ctx.fillStyle = "#000";
+        ctx.fillText("Press \"R\" to restart mid-game.", canvas.width / 2 - 186, canvas.height / 2 + 120);
+        ctx.font = "20px Lucida Control";
+        ctx.fillStyle = "#000";
+        ctx.fillText("Refresh page to play again.", canvas.width / 2 - 186, canvas.height / 2 + 140);
         ctx.globalAlpha = "1.0"
     }
 }
 
 function gameOver() {
     if(health == 0) {
+        dBall = [0, 0]
+        dTracker = [0, 0]
         ctx.beginPath();
         ctx.rect(0, 0, canvas.width, canvas.height);
         ctx.globalAlpha = "0.5"
@@ -147,9 +151,17 @@ function gameOver() {
         ctx.fillText("Score: " + score, canvas.width / 2 - 153, canvas.height / 2 + 30);
         ctx.font = "30px Lucida Console";
         ctx.fillStyle = "#0095DD";
-        ctx.fillText("Level: " + level, canvas.width / 2 + 7, canvas.height / 2 + 70);      
+        ctx.fillText("Level: " + level, canvas.width / 2 + 7, canvas.height / 2 + 70);
+        ctx.font = "25px Lucida Console";
+        ctx.fillStyle = "#ffff00";
+        ctx.fillText("Press Space to play again", canvas.width / 2 - 187, canvas.height / 2 + 110);
         cancelAnimationFrame();
+    }
+}
 
+function restart() {
+    if(rPressed) {
+        location.reload();
     }
 }
 
@@ -188,6 +200,7 @@ function animate() {
     instructions();
     collision(ball, dBall);
     collision(tracker, dTracker);
+    restart();
     gameOver();
     requestAnimationFrame(animate);
 }
@@ -224,18 +237,18 @@ function speedUp() {
     }    
 }
 
-    document.addEventListener("keydown", keyDownHandler, false);
-    document.addEventListener("keyup", keyUpHandler, false);
-    //document.addEventListener("mousemove", mouseMoveHandler, false);
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+/*document.addEventListener("mousemove", mouseMoveHandler, false);
 
-/*function mouseMoveHandler(e) {
+function mouseMoveHandler(e) {
     var relativeX = e.clientX - canvas.offsetLeft;
     var relativeY = e.clientY - canvas.offsetTop;
     if(relativeX > 0 && relativeX < canvas.width) {
-        player.x = relativeX - player.radius;
+        player.x = relativeX;
     }
     if(relativeY > 0 && relativeY < canvas.height) {
-        player.y = relativeY - player.radius;
+        player.y = relativeY;
     }
 }*/
 
@@ -252,6 +265,12 @@ function keyDownHandler(e) {
     else if(e.keyCode == 38 || e.keyCode == 87) {
         upPressed = true;
     }
+    if(e.keyCode == 82) {
+        rPressed = true;
+    }
+    if(e.keyCode == 32) {
+        spacePressed = true;
+    }
 }
 
 function keyUpHandler(e) {
@@ -267,9 +286,14 @@ function keyUpHandler(e) {
     else if(e.keyCode == 38 || e.keyCode == 87) {
         upPressed = false;
     }
+    if(e.keyCode == 82) {
+        rPressed = false;
+    }
+    if(e.keyCode == 32) {
+        spacePressed = false;
+    }
 }
 
 animate();
 setInterval(speedUp, 4000);
 setInterval(scoreUp, 100);
-gameOver();
