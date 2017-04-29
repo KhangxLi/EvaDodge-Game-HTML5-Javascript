@@ -2,7 +2,7 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var player = {radius: 15, x: canvas.width / 2, y: canvas.height / 2 + 40, color: "#0095DD"}
 var ball = {radius: 10, x: canvas.width / 2, y: 12, color: "#ff0000"}
-var dBall = [1, 1]
+var dBall = [2, 2]
 var tracker = {radius: 5, x: canvas.width / 2, y: 12, color: "#ffff00"}
 var dTracker = [0, 0.5]
 var target = {x: player.x, y: player.y}
@@ -111,6 +111,16 @@ function drawHealth() {
     ctx.fillText("Health: " + health, canvas.width - 175, 20);
 }
 
+function warning() {
+    if(level == 8) {
+        ctx.globalAlpha = "0.25"
+        ctx.font = "30px Lucida Control";
+        ctx.fillStyle = "#000";
+        ctx.fillText("Warning, redball is drunk.", canvas.width / 2 - 180, canvas.height / 2 - 40);
+        ctx.globalAlpha = "1";
+    }
+}
+
 function instructions() {
     if(level == 0) {
         ctx.globalAlpha = "0.25"
@@ -201,26 +211,20 @@ function animate() {
     collision(ball, dBall);
     collision(tracker, dTracker);
     restart();
+    warning();
     gameOver();
     requestAnimationFrame(animate);
 }
 
-var a = 2
+var a = 2;
 var b = 0.5;
 
 function speedUp() {
-    if(Math.abs(dBall[0]) >= 8 || Math.abs(dBall[1]) >= 8) {
-        a = 9;
-        b = 0;
+    if(Math.abs(dBall[0]) >= 10 || Math.abs(dBall[1]) >= 10) {
+        b = 0.1
         level++;
-    }
-    if(Math.abs(dBall[0]) >= a || Math.abs(dBall[1]) >= a) {
-        dBall = [dBall[0] - 1, dBall[1] - 1];
-        a += 2
-        b += 0.2;
-        level++;
-    }
-    else {
+        dBall[0] = -dBall[0];
+        dBall[1] = -dBall[1];
         if(dBall[0] > 0) {
             dBall[0] += b;
         }
@@ -233,8 +237,25 @@ function speedUp() {
         else if(dBall[1] < 0) {
             dBall[1] += -b;
         }
-    }    
+    }
+    else {
+        b += 0.2;
+        level++;
+        if(dBall[0] > 0) {
+            dBall[0] += b;
+        }
+        else if(dBall[0] < 0) {
+            dBall[0] += -b;
+        }
+        if(dBall[1] > 0) {
+            dBall[1] += b;
+        }
+        else if(dBall[1] < 0) {
+            dBall[1] += -b;
+        }
+    }
 }
+
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -294,5 +315,5 @@ function keyUpHandler(e) {
 }
 
 animate();
-setInterval(speedUp, 4000);
+setInterval(speedUp, 5000);
 setInterval(scoreUp, 100);
