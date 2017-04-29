@@ -210,9 +210,8 @@ var b = 0.5;
 
 function speedUp() {
     if(Math.abs(dBall[0]) >= 8 || Math.abs(dBall[1]) >= 8) {
-        dBall = [1, 1];
-        a = 2;
-        b = 0.5;
+        a = 9;
+        b = 0;
         level++;
     }
     if(Math.abs(dBall[0]) >= a || Math.abs(dBall[1]) >= a) {
