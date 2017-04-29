@@ -3,7 +3,7 @@ A Html5 / Javascript game where you dodge objects as long as possible to get the
 This is my first attempt at making a game. You can play the game on codepen: http://codepen.io/KhangxLi/full/KmaZOV or 
 download the repository and open the html file with your browser.  
 
-The game is incomplete. Below are things I wanted to implement, but couldn't because of a lack in knowledge and skill.
+The game is incomplete. Below are things I wanted to implement but couldn't because of my lack of knowledge and experience.
 
 Thanks for playing!
 
