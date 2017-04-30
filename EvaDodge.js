@@ -9,7 +9,6 @@ var target = {x: player.x, y: player.y}
 var score = 0;
 var level = 0;
 var health = 10;
-var animation = true;
 var rightPressed = false;
 var leftPressed = false;
 var downPressed = false;
@@ -134,10 +133,7 @@ function instructions() {
         ctx.globalAlpha = "0.40"
         ctx.font = "20px Lucida Control";
         ctx.fillStyle = "#000";
-        ctx.fillText("Press \"R\" to restart mid-game.", canvas.width / 2 - 186, canvas.height / 2 + 120);
-        ctx.font = "20px Lucida Control";
-        ctx.fillStyle = "#000";
-        ctx.fillText("Refresh page to play again.", canvas.width / 2 - 186, canvas.height / 2 + 140);
+        ctx.fillText("Press \"R\" to restart mid-game.", canvas.width / 2 - 186, canvas.height / 2 + 140);
         ctx.globalAlpha = "1.0"
     }
 }
@@ -164,7 +160,7 @@ function gameOver() {
         ctx.fillText("Level: " + level, canvas.width / 2 + 7, canvas.height / 2 + 70);
         ctx.font = "25px Lucida Console";
         ctx.fillStyle = "#ffff00";
-        ctx.fillText("Press Space to play again", canvas.width / 2 - 187, canvas.height / 2 + 110);
+        ctx.fillText("Refresh page to play again.", canvas.width / 2 - 189, canvas.height / 2 + 110);
         cancelAnimationFrame();
     }
 }
