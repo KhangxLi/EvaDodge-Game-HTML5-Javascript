@@ -133,7 +133,7 @@ function instructions() {
         ctx.globalAlpha = "0.40"
         ctx.font = "20px Lucida Control";
         ctx.fillStyle = "#000";
-        ctx.fillText("Press \"R\" to restart mid-game.", canvas.width / 2 - 186, canvas.height / 2 + 140);
+        ctx.fillText("Press \"R\" to restart mid-game", canvas.width / 2 - 186, canvas.height / 2 + 140);
         ctx.globalAlpha = "1.0"
     }
 }
