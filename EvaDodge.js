@@ -13,8 +13,9 @@ var rightPressed = false;
 var leftPressed = false;
 var downPressed = false;
 var upPressed = false;
-var playPressed = false;
+var spacePressed = false;
 var rPressed = false;
+var pPressed = false;
 
 function drawPlayer() {
     ctx.beginPath();
@@ -171,6 +172,24 @@ function restart() {
     }
 }
 
+/*function pause() {
+    if(pPressed) {
+        ctx.font = "60px Lucida Console";
+        ctx.fillStyle = "#000";
+        ctx.fillText("PAUSE", canvas.width / 2 - 163, canvas.height / 2 - 20);
+        ctx.save();
+        dBall  = [0, 0]
+        dTracker = [0, 0]
+    }
+    
+}
+
+function playAgain() {
+    if(spacePressed) {
+    
+    }
+}*/
+
 function collision(object, vector) {
     var dx = player.x - object.x;
     var dy = player.y - object.y;
@@ -286,6 +305,9 @@ function keyDownHandler(e) {
     }
     if(e.keyCode == 32) {
         spacePressed = true;
+    }
+    if(e.keyCode == 80) {
+        pPressed = !pPressed;
     }
 }
 
