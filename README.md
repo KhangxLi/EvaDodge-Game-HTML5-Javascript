@@ -7,7 +7,7 @@ The game is incomplete. Below are things I wanted to implement but couldn't beca
 
 Thanks for playing!
 
-## Things to be added (I wish)
+## Things to be added
 + Main menu
 + Get item to recover some health
 + Show collision damage through color change
