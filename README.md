@@ -18,5 +18,5 @@ Thanks for playing!
 + Try again button
 + Pause game key
 + Sound effects and music
-+ Get item / to goal to get higher scores
++ Get item or to a goal to get higher scores
 
