@@ -3,6 +3,7 @@ A Html5/Javascript game where you dodge objects as long as possible to get the h
 This is my first attempt at making a game. You can play the game on codepen: http://codepen.io/KhangxLi/full/KmaZOV or 
 download the repository and open the html file with your browser. You need a keyboard to play as EvaDodge is not optimized for touch screens yet (smartphones/tablets).
 
+This game is inspired by the classic Breakout game. I learned about collision detection and making the balls move by reading a tutorial on how to code the Breakout game.
 The game is incomplete. Below are things I wanted to implement but couldn't because of my lack of knowledge and experience.
 
 Thanks for playing!
