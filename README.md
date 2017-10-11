@@ -1,6 +1,7 @@
 # EvaDodge
 A Html5/Javascript game where you dodge objects as long as possible to get the highest score.  
-You are a blue ball and you try to dodge a red ball bouncing around the canvas. A yellow ball that is much slower than the red one hunts you down so that you cannot stay immobile. You lose health when you are in contact with either red or yellow balls. The red ball gets faster as you progress through the levels.
+You are a blue ball and you try to dodge a red ball bouncing around the canvas. A yellow ball that is much slower than the red one hunts you down so that you cannot stay immobile. You lose health when you are in contact with either red or yellow balls. The red ball gets faster as you progress through the levels.  
+
 This is my first attempt at making a game. You can play the game on codepen: http://codepen.io/KhangxLi/full/KmaZOV or 
 download the repository and open the html file with your browser. You need a keyboard to play as EvaDodge is not optimized for touch screens yet (smartphones/tablets).
 
