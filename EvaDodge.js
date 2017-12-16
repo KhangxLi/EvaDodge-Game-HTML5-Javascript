@@ -1,12 +1,12 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-var player = {radius: 15, x: canvas.width / 2, y: canvas.height / 2 + 40, color: "#0095DD"}
-var ball = {radius: 10, x: canvas.width / 2, y: 12, color: "#ff0000"}
-var dBall = [2, 2]
-var tracker = {radius: 5, x: canvas.width / 2, y: 12, color: "#ffff00"}
-var dTracker = [0, 0.5]
-var target = {x: player.x, y: player.y}
-var score = 0;
+var player = {radius: 15, x: canvas.width / 2, y: canvas.height / 2 + 40, color: "#0095DD"} // the player
+var ball = {radius: 10, x: canvas.width / 2, y: 12, color: "#ff0000"} // the red ball
+var dBall = [2, 2] // red ball x, y velocity
+var tracker = {radius: 5, x: canvas.width / 2, y: 12, color: "#ffff00"} // the yellow missile
+var dTracker = [0, 0.5] // yellow missile x, y velocity
+var target = {x: player.x, y: player.y} // the target for the yellow missile: the player
+var score = 0; 
 var level = 0;
 var health = 10;
 var rightPressed = false;
@@ -18,6 +18,7 @@ var rPressed = false;
 var pPressed = false;
 
 function drawPlayer() {
+    // Draw blue circle as player and add movement controls
     ctx.beginPath();
     ctx.arc(player.x, player.y, player.radius, 0, Math.PI*2);
     ctx.fillStyle = player.color;
@@ -38,6 +39,7 @@ function drawPlayer() {
 }
 
 function newBall() {
+    // Draw the red ball
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI*2);
     ctx.fillStyle = ball.color;
@@ -51,6 +53,7 @@ function newBall() {
 var c = 0.5;
 
 function newTracker() {
+    // Create the yellow missile that follows player
     ctx.beginPath();
     ctx.arc(tracker.x, tracker.y, tracker.radius, 0, Math.PI*2);
     ctx.fillStyle = tracker.color;
@@ -79,6 +82,7 @@ function newTracker() {
 }
 
 function drawSpawnZone() {
+    // Simple drawing
     ctx.beginPath();
     ctx.rect(canvas.width / 2 - 25, 0, 50, 25);
     ctx.fillStyle = "#f00";
@@ -90,6 +94,7 @@ function drawSpawnZone() {
 }
 
 function drawScore() {
+    // Display the score at top-left corner
     ctx.font = "16px Arial";
     ctx.fillStyle = "#000";
     ctx.fillText("Score: " + score, 8, 20);
@@ -100,18 +105,21 @@ function scoreUp() {
 }
 
 function drawLevel() {
+    // Display level at top-right corner
     ctx.font = "16px Arial";
     ctx.fillStyle = "#000";
     ctx.fillText("Level: " + level, canvas.width - 75, 20);
 }
 
 function drawHealth() {
+    // Display health level
     ctx.font = "16px Arial";
     ctx.fillStyle = "#0095DD";
     ctx.fillText("Health: " + health, canvas.width - 175, 20);
 }
 
 function warning() {
+    // Display warning when level 8 is reached
     if(level == 8) {
         ctx.globalAlpha = "0.25"
         ctx.font = "30px Lucida Control";
@@ -122,6 +130,7 @@ function warning() {
 }
 
 function instructions() {
+    // Display instructions at the beginning of the game
     if(level == 0) {
         ctx.globalAlpha = "0.25"
         ctx.font = "30px Lucida Control";
@@ -140,6 +149,7 @@ function instructions() {
 }
 
 function gameOver() {
+    // Display game over and scores when health goes down to zero
     if(health == 0) {
         dBall = [0, 0]
         dTracker = [0, 0]
@@ -167,6 +177,7 @@ function gameOver() {
 }
 
 function restart() {
+    // Start over mid-game by pressing "r"
     if(rPressed) {
         location.reload();
     }
@@ -191,6 +202,7 @@ function playAgain() {
 }*/
 
 function collision(object, vector) {
+    // Collision detection and making things bounce off each other
     var dx = player.x - object.x;
     var dy = player.y - object.y;
     var distance = Math.sqrt(dx * dx + dy * dy);
@@ -203,6 +215,7 @@ function collision(object, vector) {
 }
 
 function walls(object, vector) {
+    // Collision and bouncing off walls of canvas
     if(object.x + object.radius > canvas.width || object.x - object.radius < 0) {
         vector[0] = -vector[0];
     }
@@ -212,6 +225,7 @@ function walls(object, vector) {
 }
 
 function animate() {
+    // Animating the game
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawHealth();
     drawScore();
@@ -235,6 +249,7 @@ var a = 2;
 var b = 0.5;
 
 function speedUp() {
+    // Function to speed up red ball as the game progresses
     if(Math.abs(dBall[0]) >= 10 || Math.abs(dBall[1]) >= 10) {
         b = 0.1
         level++;
@@ -288,6 +303,7 @@ function mouseMoveHandler(e) {
 }*/
 
 function keyDownHandler(e) {
+    // Keyboard controls for pressing down on key
     if(e.keyCode == 39 || e.keyCode == 68) {
         rightPressed = true;
     }
@@ -312,6 +328,7 @@ function keyDownHandler(e) {
 }
 
 function keyUpHandler(e) {
+    // Keyboard controls when releasing key
     if(e.keyCode == 39 || e.keyCode == 68) {
         rightPressed = false;
     }
@@ -333,5 +350,5 @@ function keyUpHandler(e) {
 }
 
 animate();
-setInterval(speedUp, 5000);
-setInterval(scoreUp, 100);
+setInterval(speedUp, 5000); // speed up every 5000 milliseconds
+setInterval(scoreUp, 100); // score up every 100 milliseconds

@@ -10,7 +10,13 @@ The game is incomplete. Below are things I wanted to implement but couldn't beca
 
 Thanks for playing!
 
-## Things to be added
+### __Walkthrough__
+* Red ball gets faster and faster;
+* Yellow ball is deadly since it does not bounce off the player;
+* Moving in the same direction as the red ball as it bounces off the player causes more health loss;
+* Red ball becomes drunk and starts changing direction mid canvas at level 8;
+
+### Ideas
 + Main menu
 + Get item to recover some health
 + Show collision damage through color change
