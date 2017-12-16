@@ -1,11 +1,11 @@
 # EvaDodge
-A Html5/Javascript game where you dodge objects as long as possible to get the highest score.  
-You are a blue ball and you try to dodge a red ball bouncing around the canvas. A yellow ball that is much slower than the red one hunts you down so that you cannot stay immobile. You lose health when you are in contact with either red or yellow balls. The red ball gets faster as you progress through the levels.  
+A Html5/Javascript game where the player dodges objects as long as possible to get the highest score.  
+The user is a blue circle and tries to dodge a red ball bouncing around the canvas. A yellow "missile" that is much slower than the red one hunts the player down to prevent immobility. The player loses health when in contact with the red or yellow ennemies. The red ball gets faster as the game progresses through the levels.  
 
-This is my first attempt at making a game. You can play the game on codepen: http://codepen.io/KhangxLi/full/KmaZOV or 
-download the repository and open the html file with your browser. You need a keyboard to play as EvaDodge is not optimized for touch screens yet (smartphones/tablets).
+My first attempt at making a game. Play the game on codepen: http://codepen.io/KhangxLi/full/KmaZOV or 
+download the repository and open the html file with a browser. A keyboard is needed to play. EvaDodge is not optimized for touch screens (smartphones/tablets).  
 
-This game is inspired by the classic Breakout game. I learned about collision detection and making the balls move by reading a tutorial on how to code the Breakout game.
+This game is inspired by the classic Breakout game. I learned about collision detection animation/movement using a Breakout game tutorial. I had no prior formal education.  
 The game is incomplete. Below are things I wanted to implement but couldn't because of my lack of knowledge and experience.
 
 Thanks for playing!
